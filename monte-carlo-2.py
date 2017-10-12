@@ -10,23 +10,19 @@ def f(x):                 # def upper function
     return np.sqrt(1-(x-1)**2)
         
 def F(x):                 # def lower function
-    return x**2
+    return 2-np.sqrt(4-x**2)
 
-xarray = np.linspace(0,1.7,10000)   #x array for plot 
 
-y1 = f(xarray)                      #y arrays for plot
-y2 = F(xarray)
-
-def MC(N):                           #1x1 monte carlo for area between curves
-    y = np.random.random(N)
-    x = np.linspace(0,1,N)
+def MC(N):                           #2x2 monte carlo for area between curves
+    y = 2*np.random.random(N)
+    x = np.linspace(0,2,N)
     yf = f(x)
     yF = F(x)
     condition = (yf >= y) & (yF <=y)
     count = np.sum(condition)
-    I = count/N
+    I = 4*count/N    #area*count/attempts
     return I
 
-area = MC(10**7)
+area = MC(10**8)
 
 print(area)

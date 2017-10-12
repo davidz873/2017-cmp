@@ -9,7 +9,7 @@ def f(x):
 
 
 
-def MC(N):                           #1x1 monte carlo for area between curves
+def MC(N):                           #2x1 monte carlo for area between curves
     y = np.random.random(N)
     x = np.linspace(0,2,N)
     yf = f(x)

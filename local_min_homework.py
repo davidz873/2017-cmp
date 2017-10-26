@@ -13,11 +13,7 @@ def f1(x):
 def f2(y):
     return 1/4*y**2
 
-nx = np.linspace(x_min,x_max,10**6)
-ny = np.linspace(y_min,y_max,10**6)
 
-F1 = f1(nx)
-F2 = f2(ny)
 
 def MC(N):
     nx = np.linspace(x_min,x_max,N)
@@ -26,14 +22,12 @@ def MC(N):
     F1 = f1(nx)
     F2 = f2(ny)
     
-    x = 4*np.random.random(N)-2
-    y = 4*np.random.random(N)-2
-    where_x = F1 == x
-    where_y = F2 == y
-    X = x * where_x
-    Y = y * where_y
-    xmin = np.amin(X)
-    ymin = np.amin(Y)
+    xz = 2*np.random.random(N)
+    yz = np.random.random(N)
+    Xz = np.delete(xz,xz!=f1)
+    Yz = np.delete(yz,yz!=f2)
+    xmin = np.amin(Xz)
+    ymin = np.amin(Yz)
     local_min = f(xmin,ymin)
     print('The local minumum is ',local_min, 'which occurs at ', '(',np.abs(xmin),',',np.abs(ymin),')')
 MC(10**6)
